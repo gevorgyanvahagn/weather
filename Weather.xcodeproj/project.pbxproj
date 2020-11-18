@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		83FC400D2565C4F200CBBF14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FC400C2565C4F200CBBF14 /* AppDelegate.swift */; };
-		83FC400F2565C4F200CBBF14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FC400E2565C4F200CBBF14 /* SceneDelegate.swift */; };
 		83FC40112565C4F200CBBF14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FC40102565C4F200CBBF14 /* ViewController.swift */; };
 		83FC40142565C4F200CBBF14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83FC40122565C4F200CBBF14 /* Main.storyboard */; };
 		83FC40162565C4F400CBBF14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83FC40152565C4F400CBBF14 /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		83FC40092565C4F200CBBF14 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83FC400C2565C4F200CBBF14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83FC400E2565C4F200CBBF14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83FC40102565C4F200CBBF14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		83FC40132565C4F200CBBF14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83FC40152565C4F400CBBF14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				83FC400C2565C4F200CBBF14 /* AppDelegate.swift */,
-				83FC400E2565C4F200CBBF14 /* SceneDelegate.swift */,
 				83FC40102565C4F200CBBF14 /* ViewController.swift */,
 				83FC40122565C4F200CBBF14 /* Main.storyboard */,
 				83FC40152565C4F400CBBF14 /* Assets.xcassets */,
@@ -139,7 +136,6 @@
 			files = (
 				83FC40112565C4F200CBBF14 /* ViewController.swift in Sources */,
 				83FC400D2565C4F200CBBF14 /* AppDelegate.swift in Sources */,
-				83FC400F2565C4F200CBBF14 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +285,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24EK95JY3D;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24EK95JY3D;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
