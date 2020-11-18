@@ -54,14 +54,102 @@
 		83FC400B2565C4F200CBBF14 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				83FC400C2565C4F200CBBF14 /* AppDelegate.swift */,
-				83FC40102565C4F200CBBF14 /* ViewController.swift */,
-				83FC40122565C4F200CBBF14 /* Main.storyboard */,
-				83FC40152565C4F400CBBF14 /* Assets.xcassets */,
-				83FC40172565C4F400CBBF14 /* LaunchScreen.storyboard */,
-				83FC401A2565C4F400CBBF14 /* Info.plist */,
+				83FC404A2565C74E00CBBF14 /* Views */,
+				83FC40492565C74100CBBF14 /* Models */,
+				83FC40482565C72200CBBF14 /* Controllers */,
+				83FC40472565C71000CBBF14 /* Application */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		83FC40472565C71000CBBF14 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				83FC404D2565C7BC00CBBF14 /* Core */,
+				83FC404F2565C7CD00CBBF14 /* Settings */,
+				83FC404E2565C7C800CBBF14 /* Resources */,
+				83FC40502565C7E500CBBF14 /* Shared */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		83FC40482565C72200CBBF14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				83FC404C2565C78C00CBBF14 /* ViewControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		83FC40492565C74100CBBF14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		83FC404A2565C74E00CBBF14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83FC404B2565C76400CBBF14 /* Storyboards */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		83FC404B2565C76400CBBF14 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				83FC40122565C4F200CBBF14 /* Main.storyboard */,
+				83FC40172565C4F400CBBF14 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		83FC404C2565C78C00CBBF14 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				83FC40102565C4F200CBBF14 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		83FC404D2565C7BC00CBBF14 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		83FC404E2565C7C800CBBF14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83FC40512565C81C00CBBF14 /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		83FC404F2565C7CD00CBBF14 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				83FC401A2565C4F400CBBF14 /* Info.plist */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		83FC40502565C7E500CBBF14 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				83FC400C2565C4F200CBBF14 /* AppDelegate.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		83FC40512565C81C00CBBF14 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				83FC40152565C4F400CBBF14 /* Assets.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +372,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24EK95JY3D;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Weather/Application/Settings/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -304,7 +392,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24EK95JY3D;
-				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Weather/Application/Settings/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
