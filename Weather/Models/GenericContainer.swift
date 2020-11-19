@@ -1,5 +1,5 @@
 //
-//  WeatherContainer.swift
+//  GenericContainer.swift
 //  Weather
 //
 //  Created by Vahagn Gevorgyan on 19.11.20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherContainer<T: Codable>: Codable {
+struct GenericContainer<T: Codable>: Codable {
     let code: String?
     let message, count: Int?
     let list: [T]?
