@@ -35,9 +35,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZR4-n4-au7">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="tzy-bi-Pcw">
+                            <connections>
+                                <action selector="buttonTapped" destination="BYZ-38-t0r" id="5YG-Av-zfn"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="4PD-5x-UiN">
                             <connections>
-                                <action selector="buttonTapped" destination="BYZ-38-t0r" id="aJP-vO-LaH"/>
                                 <segue destination="J7d-Bs-smg" kind="show" id="TQJ-gM-dLR"/>
                             </connections>
                         </barButtonItem>
@@ -74,6 +78,9 @@
                                                         <segment title="Metric"/>
                                                         <segment title="Imperial"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="segmentedControllerValueDidChange:" destination="J7d-Bs-smg" eventType="valueChanged" id="CRx-7N-TlP"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -131,6 +138,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Dvn-ui-nrB"/>
+                    <connections>
+                        <outlet property="unitSegmentedController" destination="mMJ-0H-0XC" id="LoJ-oy-9vC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uKV-Ds-b8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -8,12 +8,17 @@
 import UIKit
 
 class SettingsViewController: UITableViewController {
+    
+    @IBOutlet weak private var unitSegmentedController: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        unitSegmentedController.selectedSegmentIndex = UserSettings.unit.intValue
     }
 
-
+    @IBAction private func segmentedControllerValueDidChange(_ sender: UISegmentedControl) {
+        if let unit = Unit.unit(at: sender.selectedSegmentIndex) {
+            UserSettings.unit = unit
+        }
+    }
 }

@@ -26,6 +26,12 @@ class ViewController: UIViewController {
                 print("Denided")
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsChanged), name: NSNotification.Name.userSettingsUnitChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsChanged), name: NSNotification.Name.userSettingsLanguageChanged, object: nil)
+    }
+    
+    @objc private func userSettingsChanged() {
+        buttonTapped()
     }
     
     @IBSegueAction
@@ -36,12 +42,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func buttonTapped() {
-        print("Button tapped")
-        
-        Router.fiveDayWeatherForecast(countryCode: "Yerevan").request { (result: Result<GenericContainer<Forecast>, Error>) in
+        Router.fiveDayWeatherForecast(countryCode: "Yerevan", language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
-                print(container.list)
                 self.weatherTableViewController?.updateDatasource(container.list ?? [])
                 self.title = container.city?.name
             case .failure(let error):
@@ -49,11 +52,9 @@ class ViewController: UIViewController {
             }
         }
         
-        Router.currentWeatherForecast(countryCode: "Yerevan").request { (result: Result<Forecast, Error>) in
+        Router.currentWeatherForecast(countryCode: "Yerevan", language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<Forecast, Error>) in
             switch result {
             case .success(let forecast):
-                print(forecast)
-                print(forecast)
                 self.weatherTableViewController?.updateHeaderView(forecast)
             case .failure(let error):
                 print(error.localizedDescription)
