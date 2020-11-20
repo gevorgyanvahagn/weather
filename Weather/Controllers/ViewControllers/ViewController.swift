@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet private weak var button: UIButton!
     @IBOutlet private weak var label: UILabel!
     private var locationService = LocationService()
+    private var weatherTableViewController: WeatherTableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,13 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBSegueAction
+    private func showWeatherTableViewController(coder: NSCoder, sender: Any?, segueIdentifier: String?)
+        -> WeatherTableViewController? {
+        weatherTableViewController = WeatherTableViewController(coder: coder, dataSource: [])
+        return weatherTableViewController
+    }
+    
     @IBAction private func buttonTapped() {
         print("Button tapped")
         
@@ -36,6 +43,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let container):
                 print(container.list)
+                self.weatherTableViewController?.updateDatasource(container.list ?? [])
             case .failure(let error):
                 print(error.localizedDescription)
             }
