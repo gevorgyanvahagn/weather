@@ -8,7 +8,7 @@
 import Foundation
 
 struct Forecast: Codable {
-    let date: Int?
+    let date: Date?
     let main: WeatherMainInfo?
     let weather: [Weather]?
     let clouds: Cloud?
@@ -23,4 +23,9 @@ struct Forecast: Codable {
         case wind
         case visibility
     }
+    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        date = try container.decodeIfPresent(String.self, forKey: .id)
+//    }
 }

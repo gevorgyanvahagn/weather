@@ -39,7 +39,24 @@ extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.className, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.className, for: indexPath) as? WeatherTableViewCell else {
+            fatalError()
+        }
+        let forecast = dataSource[indexPath.row]
+        if let date = forecast.date {
+            cell.timeLabel.text = DateFormatter.globalHourFormatter.string(from: date)
+        } else {
+            cell.timeLabel.text = ""
+        }
+        
+        if let temperature = forecast.main?.temperature, let description = forecast.weather?.first?.main {
+            let celsius = MeasurementFormatter.temperatureConverter(temperature, from: .kelvin, to: .celsius)
+            let temperatureText = celsius.replacingOccurrences(of: "°C", with: " °C")
+            cell.temperatureLabel.text = "\(description), \(temperatureText)"
+        } else {
+            cell.temperatureLabel.text = ""
+        }
+        
         return cell
     }
 }
