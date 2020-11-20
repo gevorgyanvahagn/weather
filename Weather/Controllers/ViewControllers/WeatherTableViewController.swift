@@ -9,6 +9,7 @@ import UIKit
 
 final class WeatherTableViewController: UIViewController {
     
+    @IBOutlet private weak var headerView: WeatherHeaderView?
     @IBOutlet private weak var tableView: UITableView?
     private var dataSource: [Dictionary<Date, [Forecast]>.Element] = []
     
@@ -38,7 +39,7 @@ final class WeatherTableViewController: UIViewController {
         }.sorted(by: { $0.key < $1.key})
     }
     
-    private func load(_ cell: inout WeatherTableViewCell, with forecast: Forecast) {
+    private func configure(_ cell: inout WeatherTableViewCell, with forecast: Forecast) {
         if let date = forecast.date {
             cell.timeLabel.text = DateFormatter.globalHourFormatter.string(from: date)
         } else {
@@ -85,7 +86,7 @@ extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource
             fatalError()
         }
         let forecast = dataSource[indexPath.section].value[indexPath.row]
-        load(&cell, with: forecast)
+        configure(&cell, with: forecast)
         return cell
     }
 }

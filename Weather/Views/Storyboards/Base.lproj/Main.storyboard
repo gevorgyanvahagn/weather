@@ -75,7 +75,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="S3X-Ya-Le0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="kge-T8-Ewx">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="kge-T8-Ewx" customClass="WeatherHeaderView" customModule="Weather" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -159,6 +159,15 @@
                                         <constraint firstItem="Us8-bU-6cY" firstAttribute="leading" secondItem="kge-T8-Ewx" secondAttribute="leading" constant="14" id="jt2-bz-1bn"/>
                                         <constraint firstAttribute="trailing" secondItem="Us8-bU-6cY" secondAttribute="trailing" constant="14" id="xwK-dC-25U"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="sunriseLabel" destination="sLn-hj-k3f" id="U03-HO-OY3"/>
+                                        <outlet property="sunsetLabel" destination="WnZ-iF-dbX" id="cUi-qz-ash"/>
+                                        <outlet property="temperatureLabel" destination="TXI-ob-5Gu" id="mGf-7p-Z5O"/>
+                                        <outlet property="visibilityLabel" destination="Gmp-aT-OnN" id="dUG-gU-viC"/>
+                                        <outlet property="weatherDescriptionLabel" destination="zjx-PW-dPQ" id="m2x-sM-l2Q"/>
+                                        <outlet property="weatherImageView" destination="rzi-85-Ilt" id="YY2-NO-2JX"/>
+                                        <outlet property="windSpeedLabel" destination="jOU-xS-gfL" id="6z8-4N-a3m"/>
+                                    </connections>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherTableViewCell" rowHeight="40" id="Qy3-XV-bVK" customClass="WeatherTableViewCell" customModule="Weather" customModuleProvider="target">
@@ -225,6 +234,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerView" destination="kge-T8-Ewx" id="PLl-Ty-njt"/>
                         <outlet property="tableView" destination="S3X-Ya-Le0" id="KzG-7Q-Kqw"/>
                     </connections>
                 </viewController>
