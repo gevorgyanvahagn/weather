@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+final class SettingsViewController: UITableViewController {
     
     @IBOutlet weak private var unitSegmentedController: UISegmentedControl!
     @IBOutlet weak private var selectedLanguageLabel: UILabel!

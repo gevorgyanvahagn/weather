@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherHeaderView: UIView {
+final class WeatherHeaderView: UIView {
     
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!

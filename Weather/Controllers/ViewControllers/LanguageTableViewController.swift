@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LanguageTableViewController: UITableViewController {
+final class LanguageTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
