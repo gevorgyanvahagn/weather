@@ -38,12 +38,22 @@ class ViewController: UIViewController {
     @IBAction private func buttonTapped() {
         print("Button tapped")
         
-        Router.fiveDayWeatherForecast(countryCode: "arm").request { (result: Result<GenericContainer<Forecast>, Error>) in
+        Router.fiveDayWeatherForecast(countryCode: "Yerevan").request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
                 print(container.list)
                 self.weatherTableViewController?.updateDatasource(container.list ?? [])
                 self.title = container.city?.name
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        Router.currentWeatherForecast(countryCode: "Yerevan").request { (result: Result<Forecast, Error>) in
+            switch result {
+            case .success(let forecast):
+                print(forecast)
+                print(forecast)
             case .failure(let error):
                 print(error.localizedDescription)
             }

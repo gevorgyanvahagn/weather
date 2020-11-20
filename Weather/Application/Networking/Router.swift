@@ -11,6 +11,7 @@ import Alamofire
 enum Router: URLConvertible {
     
     case fiveDayWeatherForecast(countryCode: String)
+    case currentWeatherForecast(countryCode: String)
     
     var baseURL: URL {
         return Constants.Links.endpoint
@@ -19,25 +20,27 @@ enum Router: URLConvertible {
     var method: HTTPMethod {
         switch self {
         case .fiveDayWeatherForecast: return .get
+        case .currentWeatherForecast: return .get
         }
     }
     
     var path: String {
         switch self {
         case .fiveDayWeatherForecast: return "forecast"
+        case .currentWeatherForecast: return "weather"
         }
     }
     
     var headers: [HTTPHeader] {
         switch self {
-        case .fiveDayWeatherForecast:
+        case .fiveDayWeatherForecast, .currentWeatherForecast:
             return []
             
         }
     }
     var parameters: Parameters {
         switch self {
-        case .fiveDayWeatherForecast(let countryCode):
+        case .fiveDayWeatherForecast(let countryCode), .currentWeatherForecast(let countryCode):
             return ["q": countryCode, "appid": Constants.Secrets.appId]
         }
     }
