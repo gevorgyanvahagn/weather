@@ -27,16 +27,71 @@ final class WeatherTableViewController: UIViewController {
     }
     
     public func updateDatasource(_ dataSource: [Forecast]) {
-        prepareDataSource(dataSource)
+        organizeDataSource(dataSource)
         tableView?.reloadData()
     }
     
-    private func prepareDataSource(_ forecast: [Forecast]) {
+    public func updateHeaderView(_ forecast: Forecast) {
+        configureHeaderView(with: forecast)
+    }
+    
+    private func organizeDataSource(_ forecast: [Forecast]) {
         // TODO: - Handle force unwrap case
         dataSource = Dictionary(grouping: forecast) { (forecast) -> Date in
             let date = Calendar.current.startOfDay(for: forecast.date!)
             return date
         }.sorted(by: { $0.key < $1.key})
+    }
+    
+    private func configureHeaderView(with forecast: Forecast) {
+        if let sunrise = forecast.system?.sunrise {
+            // TODO: - Add localization
+            headerView?.sunriseLabel.text = "Sunrise: \(DateFormatter.globalHourFormatter.string(from: sunrise))"
+        } else {
+            headerView?.sunriseLabel.text = ""
+        }
+        
+        if let sunset = forecast.system?.sunset {
+            // TODO: - Add localization
+            headerView?.sunsetLabel.text = "Sunset \(DateFormatter.globalHourFormatter.string(from: sunset))"
+        } else {
+            headerView?.sunsetLabel.text = ""
+        }
+        
+        if let temperature = forecast.main?.temperature {
+            let celsius = MeasurementFormatter.temperatureConverter(temperature, from: .kelvin, to: .celsius)
+            let temperatureText = celsius.replacingOccurrences(of: "°C", with: " °C")
+            headerView?.temperatureLabel.text = temperatureText
+        } else {
+            headerView?.temperatureLabel.text = ""
+        }
+        
+        if let description = forecast.weather?.first?.main {
+            headerView?.weatherDescriptionLabel.text = description
+        } else {
+            headerView?.weatherDescriptionLabel.text = ""
+        }
+        
+        if let visibility = forecast.visibility {
+            // TODO: - Add localization
+            headerView?.visibilityLabel.text = "Visibility: \(visibility) m"
+        } else {
+            headerView?.visibilityLabel.text = ""
+        }
+        
+        if let wind = forecast.wind?.speed {
+            // TODO: - Add localization
+            headerView?.windSpeedLabel.text = "Wind: \(wind) m/s"
+        } else {
+            headerView?.windSpeedLabel.text = ""
+        }
+        
+        if let iconName = forecast.weather?.first?.icon {
+            let url = Constants.Links.iconsEndpoint.appendingPathComponent("\(iconName).png")
+            headerView?.weatherImageView.setImage(with: url)
+        } else {
+            headerView?.weatherImageView?.image = nil
+        }
     }
     
     private func configure(_ cell: inout WeatherTableViewCell, with forecast: Forecast) {

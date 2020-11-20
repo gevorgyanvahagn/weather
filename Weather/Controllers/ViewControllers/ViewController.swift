@@ -54,6 +54,7 @@ class ViewController: UIViewController {
             case .success(let forecast):
                 print(forecast)
                 print(forecast)
+                self.weatherTableViewController?.updateHeaderView(forecast)
             case .failure(let error):
                 print(error.localizedDescription)
             }

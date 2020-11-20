@@ -14,6 +14,7 @@ struct Forecast: Codable {
     let clouds: Cloud?
     let wind: Wind?
     let visibility: Int?
+    let system: System?
     
     enum CodingKeys: String, CodingKey {
         case date = "dt"
@@ -22,5 +23,6 @@ struct Forecast: Codable {
         case clouds
         case wind
         case visibility
+        case system = "sys"
     }
 }
