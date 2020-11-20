@@ -47,49 +47,35 @@ final class WeatherTableViewController: UIViewController {
         if let sunrise = forecast.system?.sunrise {
             // TODO: - Add localization
             headerView?.sunriseLabel.text = "Sunrise: \(DateFormatter.globalHourFormatter.string(from: sunrise))"
-        } else {
-            headerView?.sunriseLabel.text = ""
         }
         
         if let sunset = forecast.system?.sunset {
             // TODO: - Add localization
             headerView?.sunsetLabel.text = "Sunset \(DateFormatter.globalHourFormatter.string(from: sunset))"
-        } else {
-            headerView?.sunsetLabel.text = ""
         }
         
         if let temperature = forecast.main?.temperature {
             let temperatureText = MeasurementFormatter.temperatureFormatter(temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
             headerView?.temperatureLabel.text = temperatureText
-        } else {
-            headerView?.temperatureLabel.text = ""
         }
         
         if let description = forecast.weather?.first?.main {
             headerView?.weatherDescriptionLabel.text = description
-        } else {
-            headerView?.weatherDescriptionLabel.text = ""
         }
         
         if let visibility = forecast.visibility {
             // TODO: - Add localization
             headerView?.visibilityLabel.text = "Visibility: \(visibility) m"
-        } else {
-            headerView?.visibilityLabel.text = ""
         }
         
         if let wind = forecast.wind?.speed {
             // TODO: - Add localization
             headerView?.windSpeedLabel.text = "Wind: \(wind) m/s"
-        } else {
-            headerView?.windSpeedLabel.text = ""
         }
         
         if let iconName = forecast.weather?.first?.icon {
             let url = Constants.Links.iconsEndpoint.appendingPathComponent("\(iconName).png")
             headerView?.weatherImageView.setImage(with: url)
-        } else {
-            headerView?.weatherImageView?.image = nil
         }
     }
     
