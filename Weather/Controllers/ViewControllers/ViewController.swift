@@ -43,6 +43,7 @@ class ViewController: UIViewController {
             case .success(let container):
                 print(container.list)
                 self.weatherTableViewController?.updateDatasource(container.list ?? [])
+                self.title = container.city?.name
             case .failure(let error):
                 print(error.localizedDescription)
             }
