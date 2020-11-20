@@ -17,4 +17,13 @@ extension MeasurementFormatter {
         let output = input.converted(to: outputUnit)
         return measurementFormatter.string(from: output)
     }
+    
+    static func temperatureFormatter(_ temperature: Double, with inputUnit: UnitTemperature) -> String {
+        let measurementFormatter = MeasurementFormatter()
+        measurementFormatter.numberFormatter.maximumFractionDigits = 0
+        measurementFormatter.unitOptions = .providedUnit
+        let input = Measurement(value: temperature, unit: inputUnit)
+        return measurementFormatter.string(from: input)
+    }
+    
 }

@@ -21,4 +21,13 @@ enum Unit: String, CaseIterable {
         }
         return nil
     }
+    
+    var unitTemperature: UnitTemperature {
+        switch self {
+        case .imperial:
+            return .fahrenheit
+        case .metric:
+            return .celsius
+        }
+    }
 }

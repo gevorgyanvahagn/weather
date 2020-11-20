@@ -59,8 +59,7 @@ final class WeatherTableViewController: UIViewController {
         }
         
         if let temperature = forecast.main?.temperature {
-            let celsius = MeasurementFormatter.temperatureConverter(temperature, from: .kelvin, to: .celsius)
-            let temperatureText = celsius.replacingOccurrences(of: "°C", with: " °C")
+            let temperatureText = MeasurementFormatter.temperatureFormatter(temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
             headerView?.temperatureLabel.text = temperatureText
         } else {
             headerView?.temperatureLabel.text = ""
@@ -102,8 +101,7 @@ final class WeatherTableViewController: UIViewController {
         }
         
         if let temperature = forecast.main?.temperature, let description = forecast.weather?.first?.main {
-            let celsius = MeasurementFormatter.temperatureConverter(temperature, from: .kelvin, to: .celsius)
-            let temperatureText = celsius.replacingOccurrences(of: "°C", with: " °C")
+            let temperatureText = MeasurementFormatter.temperatureFormatter(temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
             cell.temperatureLabel.text = "\(description), \(temperatureText)"
         } else {
             cell.temperatureLabel.text = ""
