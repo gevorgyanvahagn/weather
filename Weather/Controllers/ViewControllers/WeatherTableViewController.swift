@@ -29,20 +29,8 @@ final class WeatherTableViewController: UIViewController {
         self.dataSource = dataSource
         tableView?.reloadData()
     }
-}
-
-extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.className, for: indexPath) as? WeatherTableViewCell else {
-            fatalError()
-        }
-        let forecast = dataSource[indexPath.row]
+    private func load(_ cell: inout WeatherTableViewCell, with forecast: Forecast) {
         if let date = forecast.date {
             cell.timeLabel.text = DateFormatter.globalHourFormatter.string(from: date)
         } else {
@@ -57,6 +45,28 @@ extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource
             cell.temperatureLabel.text = ""
         }
         
+        if let iconName = forecast.weather?.first?.icon {
+            let url = Constants.Links.iconsEndpoint.appendingPathComponent("\(iconName).png")
+            cell.weatherImageView.setImage(with: url)
+        } else {
+            cell.imageView?.image = nil
+        }
+    }
+}
+
+extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard var cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.className, for: indexPath) as? WeatherTableViewCell else {
+            fatalError()
+        }
+        let forecast = dataSource[indexPath.row]
+        load(&cell, with: forecast)
         return cell
     }
 }

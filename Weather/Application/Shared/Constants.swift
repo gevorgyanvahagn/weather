@@ -16,6 +16,7 @@ struct Constants {
     
     struct Links {
         static let endpoint = URL(string: "https://api.openweathermap.org/data/2.5")!
+        static let iconsEndpoint = URL(string: "http://openweathermap.org/img/wn/")!
     }
     
     struct Values {
