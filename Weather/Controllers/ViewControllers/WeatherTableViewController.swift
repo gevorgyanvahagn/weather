@@ -10,7 +10,7 @@ import UIKit
 final class WeatherTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView?
-    private(set) var dataSource: [Forecast] = []
+    private var dataSource: [Dictionary<Date, [Forecast]>.Element] = []
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -26,8 +26,16 @@ final class WeatherTableViewController: UIViewController {
     }
     
     public func updateDatasource(_ dataSource: [Forecast]) {
-        self.dataSource = dataSource
+        prepareDataSource(dataSource)
         tableView?.reloadData()
+    }
+    
+    private func prepareDataSource(_ forecast: [Forecast]) {
+        // TODO: - Handle force unwrap case
+        dataSource = Dictionary(grouping: forecast) { (forecast) -> Date in
+            let date = Calendar.current.startOfDay(for: forecast.date!)
+            return date
+        }.sorted(by: { $0.key < $1.key})
     }
     
     private func load(_ cell: inout WeatherTableViewCell, with forecast: Forecast) {
@@ -56,8 +64,16 @@ final class WeatherTableViewController: UIViewController {
 
 extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        DateFormatter.globalWeekdayFormatter.string(from: dataSource[section].key)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        dataSource[section].value.count
     }
     
     
@@ -65,7 +81,7 @@ extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource
         guard var cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.className, for: indexPath) as? WeatherTableViewCell else {
             fatalError()
         }
-        let forecast = dataSource[indexPath.row]
+        let forecast = dataSource[indexPath.section].value[indexPath.row]
         load(&cell, with: forecast)
         return cell
     }

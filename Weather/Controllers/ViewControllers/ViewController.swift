@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet private weak var label: UILabel!
     private var locationService = LocationService()
     private var weatherTableViewController: WeatherTableViewController?
     
@@ -22,9 +21,9 @@ class ViewController: UIViewController {
             case .didUpdateLocation(let location):
                 print("longitude: ", location.coordinate.longitude)
                 print("latitude: ", location.coordinate.latitude)
-                self?.label.text = nil
+                self?.buttonTapped()
             case .denied:
-                self?.label.text = "Please, go to settings and enable location services to continue using the app"
+                print("Denided")
             }
         }
     }
