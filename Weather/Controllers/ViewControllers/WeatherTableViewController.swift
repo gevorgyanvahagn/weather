@@ -59,8 +59,8 @@ final class WeatherTableViewController: UIViewController {
             headerView?.temperatureLabel.text = temperatureText
         }
         
-        if let description = forecast.weather?.first?.main {
-            headerView?.weatherDescriptionLabel.text = description
+        if let description = forecast.weather?.first?.weatherDescription {
+            headerView?.weatherDescriptionLabel.text = description.capitalized
         }
         
         if let visibility = forecast.visibility {
@@ -86,9 +86,9 @@ final class WeatherTableViewController: UIViewController {
             cell.timeLabel.text = ""
         }
         
-        if let temperature = forecast.main?.temperature, let description = forecast.weather?.first?.main {
+        if let temperature = forecast.main?.temperature, let description = forecast.weather?.first?.weatherDescription {
             let temperatureText = MeasurementFormatter.temperatureFormatter(temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
-            cell.temperatureLabel.text = "\(description), \(temperatureText)"
+            cell.temperatureLabel.text = "\(description.capitalized), \(temperatureText)"
         } else {
             cell.temperatureLabel.text = ""
         }

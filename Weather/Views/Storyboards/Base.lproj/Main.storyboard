@@ -126,7 +126,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bzQ-8F-Qiq" kind="show" id="fjw-2V-hyw"/>
+                                            <segue destination="IVe-P0-nNz" kind="show" id="ho1-bt-l7e"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -139,6 +139,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Dvn-ui-nrB"/>
                     <connections>
+                        <outlet property="selectedLanguageLabel" destination="4FN-wp-I3R" id="CqU-cZ-JH5"/>
                         <outlet property="unitSegmentedController" destination="mMJ-0H-0XC" id="LoJ-oy-9vC"/>
                     </connections>
                 </tableViewController>
@@ -146,21 +147,34 @@
             </objects>
             <point key="canvasLocation" x="1029.375" y="962.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Bvl-zb-HOm">
+        <!--Language Table View Controller-->
+        <scene sceneID="Vac-3Z-DLy">
             <objects>
-                <viewController id="bzQ-8F-Qiq" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AgI-1D-Nx3">
+                <tableViewController id="IVe-P0-nNz" customClass="LanguageTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="nuf-Mz-vtI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cj7-6E-JPh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="lAu-HP-V2m"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Raq-aw-Sm6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LanguageTableViewCell" id="GGh-Yc-RbO">
+                                <rect key="frame" x="0.0" y="55.5" width="320" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GGh-Yc-RbO" id="omZ-iT-Qim">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IVe-P0-nNz" id="uvx-dq-b7G"/>
+                            <outlet property="delegate" destination="IVe-P0-nNz" id="RDw-sP-gDc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="geM-nA-RMw"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uOp-0F-KAP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935" y="963"/>
+            <point key="canvasLocation" x="1942" y="957"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="d9X-Jn-6tT">
@@ -168,7 +182,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="soy-j2-R0N" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hOW-yo-uNJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
