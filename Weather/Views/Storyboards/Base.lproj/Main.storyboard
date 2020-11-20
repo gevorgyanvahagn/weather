@@ -24,16 +24,27 @@
                                     <action selector="buttonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="nv5-sp-FHS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOo-Hh-VTW">
+                                <rect key="frame" x="50" y="94" width="314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tnw-Y4-xh7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="52a-dl-DZV"/>
                             <constraint firstItem="tnw-Y4-xh7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8fA-mr-8ae"/>
+                            <constraint firstItem="eOo-Hh-VTW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="Dzr-YI-04a"/>
+                            <constraint firstItem="eOo-Hh-VTW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="ZO2-Sm-z1O"/>
+                            <constraint firstItem="eOo-Hh-VTW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i0J-ik-bbb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eOo-Hh-VTW" secondAttribute="trailing" constant="50" id="wgE-Je-jgZ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="button" destination="tnw-Y4-xh7" id="7kD-KU-V7N"/>
+                        <outlet property="label" destination="eOo-Hh-VTW" id="Q7I-dq-pmx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

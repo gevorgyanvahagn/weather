@@ -10,10 +10,23 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var label: UILabel!
+    private var locationService = LocationService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        locationService.start()
+        locationService.didUpdateLocationStatus = { [weak self] status in
+            switch status {
+            case .didUpdateLocation(let location):
+                print("longitude: ", location.coordinate.longitude)
+                print("latitude: ", location.coordinate.latitude)
+                self?.label.text = nil
+            case .denied:
+                self?.label.text = "Please, go to settings and enable location services to continue using the app"
+            }
+        }
     }
     
     @IBAction private func buttonTapped() {

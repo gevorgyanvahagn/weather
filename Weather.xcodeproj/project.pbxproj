@@ -11,6 +11,7 @@
 		837E84DE2566B7F7006143E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84DD2566B7F7006143E5 /* Constants.swift */; };
 		837E84E22566BE15006143E5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84E12566BE15006143E5 /* NetworkError.swift */; };
 		837E84E62566CDA0006143E5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84E52566CDA0006143E5 /* Router.swift */; };
+		837E84EC25671BC4006143E5 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84EB25671BC4006143E5 /* LocationService.swift */; };
 		83B239852565CFAB002E204B /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B239842565CFAB002E204B /* Forecast.swift */; };
 		83B23988256635ED002E204B /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B23987256635ED002E204B /* Wind.swift */; };
 		83B2398B25663671002E204B /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2398A25663671002E204B /* Weather.swift */; };
@@ -31,6 +32,8 @@
 		837E84DD2566B7F7006143E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		837E84E12566BE15006143E5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		837E84E52566CDA0006143E5 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		837E84EB25671BC4006143E5 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		837E84F125672DDE006143E5 /* Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Weather.entitlements; sourceTree = "<group>"; };
 		83B239842565CFAB002E204B /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		83B23987256635ED002E204B /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		83B2398A25663671002E204B /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -93,6 +96,14 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		837E84EA2566FB3E006143E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				837E84EB25671BC4006143E5 /* LocationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		83FC40002565C4F200CBBF14 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +125,7 @@
 		83FC400B2565C4F200CBBF14 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				837E84F125672DDE006143E5 /* Weather.entitlements */,
 				83FC404A2565C74E00CBBF14 /* Views */,
 				83FC40492565C74100CBBF14 /* Models */,
 				83FC40482565C72200CBBF14 /* Controllers */,
@@ -184,6 +196,7 @@
 		83FC404D2565C7BC00CBBF14 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				837E84EA2566FB3E006143E5 /* Services */,
 				837E84E02566BE05006143E5 /* Errors */,
 			);
 			path = Core;
@@ -345,6 +358,7 @@
 				83B23988256635ED002E204B /* Wind.swift in Sources */,
 				83B2399525663851002E204B /* City.swift in Sources */,
 				837E84E62566CDA0006143E5 /* Router.swift in Sources */,
+				837E84EC25671BC4006143E5 /* LocationService.swift in Sources */,
 				837E84E22566BE15006143E5 /* NetworkError.swift in Sources */,
 				83B2398B25663671002E204B /* Weather.swift in Sources */,
 				837E84DE2566B7F7006143E5 /* Constants.swift in Sources */,
@@ -495,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24EK95JY3D;
 				INFOPLIST_FILE = "$(SRCROOT)/Weather/Application/Settings/Info.plist";
@@ -516,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 24EK95JY3D;
 				INFOPLIST_FILE = "$(SRCROOT)/Weather/Application/Settings/Info.plist";
