@@ -23,7 +23,7 @@ final class WeatherViewController: UIViewController {
         locationService.didUpdateLocationStatus = { [weak self] status in
             switch status {
             case .didUpdateLocation(let location):
-                self?.loadForecastData()
+                self?.loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
             case .denied:
                 // TODO: - Handle this case
                 print("Denided")
@@ -37,7 +37,9 @@ final class WeatherViewController: UIViewController {
     }
     
     @objc private func userSettingsChanged() {
-        loadForecastData()
+        if let location = locationService.userLocation {
+            loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
+        }
     }
     
     @IBSegueAction private func showWeatherTableViewController(coder: NSCoder, sender: Any?, segueIdentifier: String?)
@@ -46,8 +48,8 @@ final class WeatherViewController: UIViewController {
         return weatherTableViewController
     }
     
-    private func loadForecastData() {
-        Router.fiveDayWeatherForecast(countryCode: "Yerevan", language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
+    private func loadForecastData(longitude: Double, latitude: Double) {
+        Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
                 self.weatherTableViewController?.updateDatasource(container.list ?? [])
@@ -57,7 +59,7 @@ final class WeatherViewController: UIViewController {
             }
         }
         
-        Router.currentWeatherForecast(countryCode: "Yerevan", language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<Forecast, Error>) in
+        Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<Forecast, Error>) in
             switch result {
             case .success(let forecast):
                 self.weatherTableViewController?.updateHeaderView(forecast)

@@ -12,6 +12,7 @@ final class LocationService: NSObject {
     
     public var didUpdateLocationStatus: ((LocationState) -> Void)?
     private let locationManager = CLLocationManager()
+    private(set) var userLocation: CLLocation?
     private(set) var isActive = false
     
     enum LocationState {
@@ -37,6 +38,7 @@ extension LocationService: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         locationManager.stopUpdatingLocation()
         didUpdateLocationStatus?(.didUpdateLocation(location))
+        userLocation = location
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
