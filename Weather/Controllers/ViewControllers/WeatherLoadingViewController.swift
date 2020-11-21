@@ -17,7 +17,7 @@ class WeatherLoadingViewController: UIViewController {
         case showOpenSettingsView
     }
     
-    public func set(_ state: WeatherLoadingViewController.State) {
+    public func set(_ state: State) {
         switch state {
         case .loading:
             activityIndicator.startAnimating()

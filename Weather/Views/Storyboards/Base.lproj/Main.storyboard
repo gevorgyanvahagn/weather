@@ -393,16 +393,16 @@
                                 <rect key="frame" x="188.66666666666666" y="368.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0wY-5d-RcG">
-                                <rect key="frame" x="79" y="32.000000000000007" width="256" height="96.666666666666686"/>
+                                <rect key="frame" x="61.333333333333343" y="32.000000000000007" width="291.33333333333326" height="115.66666666666669"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, go to settings and enable location access." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-tI-AUU">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="40.666666666666664"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, go to Settings -&gt; Pricacy -&gt; Location services and enable location access." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-tI-AUU">
+                                        <rect key="frame" x="0.0" y="0.0" width="291.33333333333331" height="59.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdI-rg-Ob3">
-                                        <rect key="frame" x="0.0" y="56.666666666666671" width="256" height="40"/>
+                                        <rect key="frame" x="0.0" y="75.666666666666671" width="291.33333333333331" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="OTU-q3-XVv"/>
