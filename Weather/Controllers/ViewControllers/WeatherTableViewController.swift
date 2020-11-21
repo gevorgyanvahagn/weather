@@ -35,10 +35,10 @@ final class WeatherTableViewController: UIViewController {
         configureHeaderView(with: forecast)
     }
     
-    private func organizeDataSource(_ forecast: [Forecast]) {
-        // TODO: - Handle force unwrap case
-        dataSource = Dictionary(grouping: forecast) { (forecast) -> Date in
-            let date = Calendar.current.startOfDay(for: forecast.date!)
+    private func organizeDataSource(_ dataSource: [Forecast]) {
+        let filteredDatasource = dataSource.filter({ $0.date.isSome })
+        self.dataSource = Dictionary(grouping: filteredDatasource) { (forecast) -> Date in
+            let date = Calendar.current.startOfDay(for: forecast.date ?? Date())
             return date
         }.sorted(by: { $0.key < $1.key})
     }

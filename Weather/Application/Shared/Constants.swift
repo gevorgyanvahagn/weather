@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     
-    // TODO: - All secrets should be saved in .env and removed from git history.
+    // TODO: - All secrets should be saved in local (uncommited) .env file and removed from git history.
     struct Secrets {
         static let appId = "f2440bae516427dc5284235fcb321e65"
     }

@@ -11,9 +11,8 @@ import CoreLocation
 final class LocationService: NSObject {
     
     public var didUpdateLocationStatus: ((LocationState) -> Void)?
-    private let locationManager = CLLocationManager()
+    private var locationManager: CLLocationManager
     private(set) var userLocation: CLLocation?
-    private(set) var isActive = false
     
     enum LocationState {
         case didUpdateLocation(CLLocation)
@@ -21,12 +20,12 @@ final class LocationService: NSObject {
     }
     
     override init() {
+        locationManager = CLLocationManager()
         super.init()
         locationManager.delegate = self
     }
     
     public func start() {
-        isActive = true
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -46,9 +45,7 @@ extension LocationService: CLLocationManagerDelegate {
         case .denied, .restricted:
             didUpdateLocationStatus?(.denied)
         default:
-            if isActive {
-                start()
-            }
+            start()
         }
     }
 }

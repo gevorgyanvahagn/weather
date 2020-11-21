@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0685ECA5007507C20D1719AC /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DEEE24CB29FC74A0256FBC3 /* Pods_Weather.framework */; };
+		8312A00D256894B300ABD989 /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312A00C256894B300ABD989 /* Optional+Extension.swift */; };
+		8312A0102568987C00ABD989 /* WeatherLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8312A00F2568987C00ABD989 /* WeatherLoadingViewController.swift */; };
 		837E84DE2566B7F7006143E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84DD2566B7F7006143E5 /* Constants.swift */; };
 		837E84E22566BE15006143E5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84E12566BE15006143E5 /* NetworkError.swift */; };
 		837E84E62566CDA0006143E5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837E84E52566CDA0006143E5 /* Router.swift */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		24406D9A58676494E6339219 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 		48A3123D15A959C76BD0EDBD /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		8312A00C256894B300ABD989 /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
+		8312A00F2568987C00ABD989 /* WeatherLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLoadingViewController.swift; sourceTree = "<group>"; };
 		837E84DD2566B7F7006143E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		837E84E12566BE15006143E5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		837E84E52566CDA0006143E5 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				837E85072567DDA0006143E5 /* MeasurementFormatter+Extensions.swift */,
 				83889E0E2567E7D600AD3D97 /* UIImage+Extension.swift */,
 				83889EF22568763500AD3D97 /* Notification.Name+Extensions.swift */,
+				8312A00C256894B300ABD989 /* Optional+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				837E84FE2567B650006143E5 /* WeatherTableViewController.swift */,
 				83889EE62568671400AD3D97 /* SettingsViewController.swift */,
 				83889EF52568818200AD3D97 /* LanguageTableViewController.swift */,
+				8312A00F2568987C00ABD989 /* WeatherLoadingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				83FC400D2565C4F200CBBF14 /* AppDelegate.swift in Sources */,
 				83889EF32568763500AD3D97 /* Notification.Name+Extensions.swift in Sources */,
 				83B2398E2566371B002E204B /* WeatherMainInfo.swift in Sources */,
+				8312A0102568987C00ABD989 /* WeatherLoadingViewController.swift in Sources */,
 				83889E0F2567E7D600AD3D97 /* UIImage+Extension.swift in Sources */,
 				83B2399825663922002E204B /* GenericContainer.swift in Sources */,
 				83B239912566377A002E204B /* Cloud.swift in Sources */,
@@ -433,6 +440,7 @@
 				83B23988256635ED002E204B /* Wind.swift in Sources */,
 				837E85082567DDA0006143E5 /* MeasurementFormatter+Extensions.swift in Sources */,
 				83889EEA2568715800AD3D97 /* UserSettings.swift in Sources */,
+				8312A00D256894B300ABD989 /* Optional+Extension.swift in Sources */,
 				83B2399525663851002E204B /* City.swift in Sources */,
 				83889EED256874E300AD3D97 /* Unit.swift in Sources */,
 				837E84E62566CDA0006143E5 /* Router.swift in Sources */,

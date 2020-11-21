@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTb-A5-ySI">
+                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <connections>
+                                    <segue destination="y5o-ka-8eO" kind="embed" destinationCreationSelector="showWeatherLoadingControllerWithCoder:sender:segueIdentifier:" id="Sju-LU-aaZ"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtA-cB-vN9">
                                 <rect key="frame" x="0.0" y="44" width="320" height="436"/>
                                 <connections>
@@ -31,7 +37,11 @@
                             <constraint firstItem="PtA-cB-vN9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EGb-U8-cIs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PtA-cB-vN9" secondAttribute="bottom" id="G0d-1L-kEK"/>
                             <constraint firstItem="PtA-cB-vN9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Hvu-l5-oww"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mTb-A5-ySI" secondAttribute="trailing" id="O2D-kw-lL6"/>
                             <constraint firstItem="PtA-cB-vN9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aBp-bt-4jb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mTb-A5-ySI" secondAttribute="bottom" id="fuZ-L8-lnh"/>
+                            <constraint firstItem="mTb-A5-ySI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kdD-0L-hcw"/>
+                            <constraint firstItem="mTb-A5-ySI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="sKo-ki-Bjv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZR4-n4-au7">
@@ -41,6 +51,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="weatherLoadingViewContainer" destination="mTb-A5-ySI" id="ZeZ-FP-LgZ"/>
+                        <outlet property="weatherTableViewContainer" destination="PtA-cB-vN9" id="1VO-NQ-vn2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,7 +191,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="soy-j2-R0N" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hOW-yo-uNJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -365,7 +379,69 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMf-MC-Aw8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935" y="72.5"/>
+            <point key="canvasLocation" x="1860" y="100"/>
+        </scene>
+        <!--Weather Loading View Controller-->
+        <scene sceneID="9VU-8q-2X0">
+            <objects>
+                <viewController id="y5o-ka-8eO" customClass="WeatherLoadingViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VGo-HG-MVI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="eDi-me-lJK">
+                                <rect key="frame" x="141.5" y="199.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0wY-5d-RcG">
+                                <rect key="frame" x="32" y="32" width="256" height="97"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, go to settings and enable location access." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-tI-AUU">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdI-rg-Ob3">
+                                        <rect key="frame" x="0.0" y="57" width="256" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="OTU-q3-XVv"/>
+                                        </constraints>
+                                        <state key="normal" title="Open settings">
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="openSettingsButtonPressed:" destination="y5o-ka-8eO" eventType="touchUpInside" id="YLD-JU-UHn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="cCL-Uf-XFb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eDi-me-lJK" firstAttribute="centerY" secondItem="VGo-HG-MVI" secondAttribute="centerY" id="3ci-3Y-smN"/>
+                            <constraint firstItem="0wY-5d-RcG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VGo-HG-MVI" secondAttribute="leading" constant="16" id="57n-kJ-3pJ"/>
+                            <constraint firstItem="0wY-5d-RcG" firstAttribute="centerX" secondItem="VGo-HG-MVI" secondAttribute="centerX" id="JCl-iU-78K"/>
+                            <constraint firstItem="eDi-me-lJK" firstAttribute="centerX" secondItem="VGo-HG-MVI" secondAttribute="centerX" id="MYJ-sv-gb6"/>
+                            <constraint firstItem="0wY-5d-RcG" firstAttribute="top" secondItem="VGo-HG-MVI" secondAttribute="top" constant="32" id="hLP-Ng-TVP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="eDi-me-lJK" id="l0r-pv-d2p"/>
+                        <outlet property="openSettingsView" destination="0wY-5d-RcG" id="Hqg-9x-aEc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="boc-Hb-WLd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860" y="-648"/>
         </scene>
     </scenes>
     <resources>

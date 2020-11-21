@@ -10,14 +10,12 @@ import Foundation
 extension DateFormatter {
     static let globalHourFormatter: DateFormatter = {
         let formatter = DateFormatter()
-//        formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "HH:mm a"
         return formatter
     }()
     
     static let globalWeekdayFormatter: DateFormatter = {
         let formatter = DateFormatter()
-//        formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "EEEE"
         return formatter
     }()

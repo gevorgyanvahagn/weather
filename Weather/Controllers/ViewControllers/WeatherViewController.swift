@@ -9,26 +9,54 @@ import UIKit
 
 final class WeatherViewController: UIViewController {
     
-    private var locationService = LocationService()
+    @IBOutlet weak private var weatherTableViewContainer: UIView!
+    @IBOutlet weak private var weatherLoadingViewContainer: UIView!
+    
     private var weatherTableViewController: WeatherTableViewController?
+    private var weatherLoadingViewController: WeatherLoadingViewController?
+    
+    private var locationService: LocationService?
+    
+    private enum State {
+        case loading
+        case locationAccessDenied
+        case loaded
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocationService()
         addUserSettingsObserver()
+        set(.loading)
+    }
+    
+    private func set(_ state: State) {
+        switch state {
+        case .loading:
+            weatherTableViewContainer.isHidden = true
+            weatherLoadingViewContainer.isHidden = false
+            weatherLoadingViewController?.set(WeatherLoadingViewController.State.loading)
+        case .loaded:
+            weatherLoadingViewContainer.isHidden = true
+            weatherTableViewContainer.isHidden = false
+        case .locationAccessDenied:
+            weatherTableViewContainer.isHidden = true
+            weatherLoadingViewContainer.isHidden = false
+            weatherLoadingViewController?.set(.showOpenSettingsView)
+        }
     }
     
     private func configureLocationService() {
-        locationService.start()
-        locationService.didUpdateLocationStatus = { [weak self] status in
+        locationService = LocationService()
+        locationService?.didUpdateLocationStatus = { [weak self] status in
             switch status {
             case .didUpdateLocation(let location):
                 self?.loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
             case .denied:
-                // TODO: - Handle this case
-                print("Denided")
+                self?.set(.locationAccessDenied)
             }
         }
+        locationService?.start()
     }
     
     private func addUserSettingsObserver() {
@@ -37,7 +65,7 @@ final class WeatherViewController: UIViewController {
     }
     
     @objc private func userSettingsChanged() {
-        if let location = locationService.userLocation {
+        if let location = locationService?.userLocation {
             loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
         }
     }
@@ -48,7 +76,16 @@ final class WeatherViewController: UIViewController {
         return weatherTableViewController
     }
     
+    @IBSegueAction private func showWeatherLoadingController(coder: NSCoder, sender: Any?, segueIdentifier: String?)
+        -> WeatherLoadingViewController? {
+        weatherLoadingViewController = WeatherLoadingViewController(coder: coder)
+        return weatherLoadingViewController
+    }
+    
     private func loadForecastData(longitude: Double, latitude: Double) {
+        let group = DispatchGroup()
+
+        group.enter()
         Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
@@ -57,8 +94,10 @@ final class WeatherViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            group.leave()
         }
-        
+
+        group.enter()
         Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<Forecast, Error>) in
             switch result {
             case .success(let forecast):
@@ -66,6 +105,11 @@ final class WeatherViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            group.leave()
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            self?.set(.loaded)
         }
     }
     
