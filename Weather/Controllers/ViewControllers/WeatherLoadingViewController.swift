@@ -27,14 +27,20 @@ class WeatherLoadingViewController: UIViewController {
             openSettingsView.isHidden = false
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
     @IBAction private func openSettingsButtonPressed(_ sender: UIButton) {
-        print("asdasdasd")
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl)
+        }
     }
     
 }
