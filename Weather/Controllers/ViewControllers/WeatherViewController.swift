@@ -16,6 +16,7 @@ final class WeatherViewController: UIViewController {
     private var weatherLoadingViewController: WeatherLoadingViewController?
     
     private var locationService: LocationService?
+    private var state: State?
     
     private enum State {
         case loading
@@ -44,6 +45,7 @@ final class WeatherViewController: UIViewController {
             weatherLoadingViewContainer.isHidden = false
             weatherLoadingViewController?.set(.showOpenSettingsView)
         }
+        self.state = state
     }
     
     private func configureLocationService() {
@@ -65,26 +67,31 @@ final class WeatherViewController: UIViewController {
     }
     
     @objc private func userSettingDidChange() {
+        if let state = state, state == .locationAccessDenied {
+            return
+        }
         if let location = locationService?.userLocation {
             loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
         }
     }
     
-    @IBSegueAction private func showWeatherTableViewController(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-        -> WeatherTableViewController? {
-        weatherTableViewController = WeatherTableViewController(coder: coder, dataSource: [])
-        return weatherTableViewController
-    }
-    
-    @IBSegueAction private func showWeatherLoadingController(coder: NSCoder, sender: Any?, segueIdentifier: String?)
-        -> WeatherLoadingViewController? {
-        weatherLoadingViewController = WeatherLoadingViewController(coder: coder)
-        return weatherLoadingViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWeatherTableViewController" {
+            if let weatherTableViewController = segue.destination as? WeatherTableViewController {
+                self.weatherTableViewController = weatherTableViewController
+            }
+        }
+        
+        if segue.identifier == "showWeatherLoadingController" {
+            if let weatherLoadingViewController = segue.destination as? WeatherLoadingViewController {
+                self.weatherLoadingViewController = weatherLoadingViewController
+            }
+        }
     }
     
     private func loadForecastData(longitude: Double, latitude: Double) {
         let group = DispatchGroup()
-
+        
         group.enter()
         Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
@@ -96,7 +103,7 @@ final class WeatherViewController: UIViewController {
             }
             group.leave()
         }
-
+        
         group.enter()
         Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<Forecast, Error>) in
             switch result {
@@ -107,7 +114,7 @@ final class WeatherViewController: UIViewController {
             }
             group.leave()
         }
-
+        
         group.notify(queue: .main) { [weak self] in
             self?.set(.loaded)
         }

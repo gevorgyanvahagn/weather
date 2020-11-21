@@ -13,15 +13,6 @@ final class WeatherTableViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView?
     private var dataSource: [Dictionary<Date, [Forecast]>.Element] = []
     
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    
-    init?(coder: NSCoder, dataSource: [Forecast]) {
-        super.init(coder: coder)
-        updateDatasource(dataSource)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
