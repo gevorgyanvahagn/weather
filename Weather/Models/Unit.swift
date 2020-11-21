@@ -12,7 +12,12 @@ enum Unit: String, CaseIterable {
     case imperial = "Imperial"
     
     var intValue: Int {
-        return Unit.allCases.firstIndex(of: self) ?? 0
+        if let index = Unit.allCases.firstIndex(of: self) {
+            return index
+        } else {
+            assertionFailure()
+            return 0
+        }
     }
     
     static func unit(at index: Int) -> Unit? {

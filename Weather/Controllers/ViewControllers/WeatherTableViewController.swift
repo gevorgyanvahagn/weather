@@ -102,6 +102,7 @@ final class WeatherTableViewController: UIViewController {
     }
 }
 
+// MARK: - Table view data source
 extension WeatherTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

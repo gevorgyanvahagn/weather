@@ -28,11 +28,6 @@ class WeatherLoadingViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     @IBAction private func openSettingsButtonPressed(_ sender: UIButton) {
         guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
             return

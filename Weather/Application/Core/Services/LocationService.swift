@@ -14,7 +14,7 @@ final class LocationService: NSObject {
     private var locationManager: CLLocationManager
     private(set) var userLocation: CLLocation?
     
-    enum LocationState {
+    public enum LocationState {
         case didUpdateLocation(CLLocation)
         case denied
     }
@@ -31,6 +31,7 @@ final class LocationService: NSObject {
     }
 }
 
+// MARK: - Location manager view data source
 extension LocationService: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

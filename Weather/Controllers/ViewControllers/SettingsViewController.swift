@@ -22,6 +22,8 @@ final class SettingsViewController: UITableViewController {
     @IBAction private func segmentedControllerValueDidChange(_ sender: UISegmentedControl) {
         if let unit = Unit.unit(at: sender.selectedSegmentIndex) {
             UserSettings.unit = unit
+        } else {
+            assertionFailure()
         }
     }
     

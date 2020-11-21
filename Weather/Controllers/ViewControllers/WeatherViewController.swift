@@ -60,11 +60,11 @@ final class WeatherViewController: UIViewController {
     }
     
     private func addUserSettingsObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsChanged), name: NSNotification.Name.userSettingsUnitChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(userSettingsChanged), name: NSNotification.Name.userSettingsLanguageChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingDidChange), name: NSNotification.Name.userSettingsUnitChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userSettingDidChange), name: NSNotification.Name.userSettingsLanguageChanged, object: nil)
     }
     
-    @objc private func userSettingsChanged() {
+    @objc private func userSettingDidChange() {
         if let location = locationService?.userLocation {
             loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
         }
