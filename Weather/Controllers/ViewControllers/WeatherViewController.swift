@@ -15,8 +15,8 @@ final class WeatherViewController: UIViewController {
     private var weatherTableViewController: WeatherTableViewController?
     private var weatherLoadingViewController: WeatherLoadingViewController?
     
-    private var locationService: LocationService?
-    private var state: State?
+    private var locationService = LocationService()
+    private var state: State = .loading
     
     private enum State {
         case loading
@@ -49,8 +49,7 @@ final class WeatherViewController: UIViewController {
     }
     
     private func configureLocationService() {
-        locationService = LocationService()
-        locationService?.didUpdateLocationStatus = { [weak self] status in
+        locationService.didUpdateLocationStatus = { [weak self] status in
             switch status {
             case .didUpdateLocation(let location):
                 self?.loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
@@ -58,7 +57,7 @@ final class WeatherViewController: UIViewController {
                 self?.set(.locationAccessDenied)
             }
         }
-        locationService?.start()
+        locationService.start()
     }
     
     private func addUserSettingsObserver() {
@@ -67,10 +66,10 @@ final class WeatherViewController: UIViewController {
     }
     
     @objc private func userSettingDidChange() {
-        if let state = state, state == .locationAccessDenied {
+        if state == .locationAccessDenied {
             return
         }
-        if let location = locationService?.userLocation {
+        if let location = locationService.userLocation {
             loadForecastData(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
         }
     }
@@ -96,8 +95,8 @@ final class WeatherViewController: UIViewController {
         Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
-                self.weatherTableViewController?.updateDatasource(container.list ?? [])
-                self.title = container.city?.name
+                self.weatherTableViewController?.updateDatasource(container.list)
+                self.title = container.city.name
             case .failure(let error):
                 print(error.localizedDescription)
             }

@@ -8,13 +8,13 @@
 import Foundation
 
 struct Forecast: Codable {
-    let date: Date?
-    let main: WeatherMainInfo?
-    let weather: [Weather]?
-    let clouds: Cloud?
-    let wind: Wind?
-    let visibility: Int?
-    let system: System?
+    let date: Date
+    let main: WeatherMainInfo
+    let weather: [Weather]
+    let clouds: Cloud
+    let wind: Wind
+    let visibility: Int
+    let system: System
     
     enum CodingKeys: String, CodingKey {
         case date = "dt"

@@ -9,8 +9,8 @@ import UIKit
 
 final class WeatherTableViewController: UIViewController {
     
-    @IBOutlet private weak var headerView: WeatherHeaderView?
-    @IBOutlet private weak var tableView: UITableView?
+    @IBOutlet private weak var headerView: WeatherHeaderView!
+    @IBOutlet private weak var tableView: UITableView!
     private var dataSource: [Dictionary<Date, [Forecast]>.Element] = []
     
     override func viewDidLoad() {
@@ -19,7 +19,7 @@ final class WeatherTableViewController: UIViewController {
     
     public func updateDatasource(_ dataSource: [Forecast]) {
         organizeDataSource(dataSource)
-        tableView?.reloadData()
+        tableView.reloadData()
     }
     
     public func updateHeaderView(_ forecast: Forecast) {
@@ -27,68 +27,56 @@ final class WeatherTableViewController: UIViewController {
     }
     
     private func organizeDataSource(_ dataSource: [Forecast]) {
-        let filteredDatasource = dataSource.filter({ $0.date.isSome })
-        self.dataSource = Dictionary(grouping: filteredDatasource) { (forecast) -> Date in
-            let date = Calendar.current.startOfDay(for: forecast.date ?? Date())
+        self.dataSource = Dictionary(grouping: dataSource) { (forecast) -> Date in
+            let date = Calendar.current.startOfDay(for: forecast.date)
             return date
         }.sorted(by: { $0.key < $1.key})
     }
     
     private func configureHeaderView(with forecast: Forecast) {
-        if let sunrise = forecast.system?.sunrise {
+        if let sunrise = forecast.system.sunrise {
             // TODO: - Add localization
-            headerView?.sunriseLabel.text = "Sunrise: \(DateFormatter.globalHourFormatter.string(from: sunrise))"
+            headerView.sunriseLabel.text = "Sunrise: \(DateFormatter.globalHourFormatter.string(from: sunrise))"
         }
         
-        if let sunset = forecast.system?.sunset {
+        if let sunset = forecast.system.sunset {
             // TODO: - Add localization
-            headerView?.sunsetLabel.text = "Sunset \(DateFormatter.globalHourFormatter.string(from: sunset))"
+            headerView.sunsetLabel.text = "Sunset \(DateFormatter.globalHourFormatter.string(from: sunset))"
         }
         
-        if let temperature = forecast.main?.temperature {
-            let temperatureText = MeasurementFormatter.temperatureFormatter(temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
-            headerView?.temperatureLabel.text = temperatureText
-        }
+            let temperatureText = MeasurementFormatter.temperatureFormatter(forecast.main.temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
+            headerView.temperatureLabel.text = temperatureText
         
-        if let description = forecast.weather?.first?.weatherDescription {
-            headerView?.weatherDescriptionLabel.text = description.capitalized
+        if let description = forecast.weather.first?.weatherDescription {
+            headerView.weatherDescriptionLabel.text = description.capitalized
         }
-        
-        if let visibility = forecast.visibility {
             // TODO: - Add localization
-            headerView?.visibilityLabel.text = "Visibility: \(visibility) m"
-        }
-        
-        if let wind = forecast.wind?.speed {
-            // TODO: - Add localization
-            headerView?.windSpeedLabel.text = "Wind: \(wind) m/s"
-        }
-        
-        if let iconName = forecast.weather?.first?.icon {
+            headerView.visibilityLabel.text = "Visibility: \(forecast.visibility) m"
+        // TODO: - Add localization
+        headerView.windSpeedLabel.text = "Wind: \(forecast.wind.speed) m/s"
+        if let iconName = forecast.weather.first?.icon {
             let url = Constants.Links.iconsEndpoint.appendingPathComponent("\(iconName).png")
-            headerView?.weatherImageView.setImage(with: url)
+            headerView.weatherImageView.setImage(with: url)
         }
     }
     
     private func configure(_ cell: inout WeatherTableViewCell, with forecast: Forecast) {
-        if let date = forecast.date {
-            cell.timeLabel.text = DateFormatter.globalHourFormatter.string(from: date)
-        } else {
-            cell.timeLabel.text = ""
-        }
         
-        if let temperature = forecast.main?.temperature, let description = forecast.weather?.first?.weatherDescription {
-            let temperatureText = MeasurementFormatter.temperatureFormatter(temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
+            cell.timeLabel.text = DateFormatter.globalHourFormatter.string(from: forecast.date)
+
+        
+        if let description = forecast.weather.first?.weatherDescription {
+            let temperatureText = MeasurementFormatter.temperatureFormatter(forecast.main.temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
             cell.temperatureLabel.text = "\(description.capitalized), \(temperatureText)"
         } else {
             cell.temperatureLabel.text = ""
         }
         
-        if let iconName = forecast.weather?.first?.icon {
+        if let iconName = forecast.weather.first?.icon {
             let url = Constants.Links.iconsEndpoint.appendingPathComponent("\(iconName).png")
             cell.weatherImageView.setImage(with: url)
         } else {
-            cell.imageView?.image = nil
+            cell.weatherImageView.image = nil
         }
     }
 }

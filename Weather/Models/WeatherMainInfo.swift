@@ -8,14 +8,14 @@
 import Foundation
 
 struct WeatherMainInfo: Codable {
-    let temperature: Double?
-    let feelsLike: Double?
-    let temperatureMin: Double?
-    let temperatureMax: Double?
-    let pressure: Int?
-    let seaLevel: Int?
+    let temperature: Double
+    let feelsLike: Double
+    let temperatureMin: Double
+    let temperatureMax: Double
+    let pressure: Int
+    var seaLevel: Int?
     let groundLevel: Int?
-    let humidity: Int?
+    let humidity: Int
     
     enum CodingKeys: String, CodingKey {
         case temperature = "temp"

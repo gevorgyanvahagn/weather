@@ -8,10 +8,10 @@
 import Foundation
 
 struct GenericContainer<T: Codable>: Codable {
-    let code: String?
-    let message, count: Int?
-    let list: [T]?
-    let city: City?
+    let code: String
+    let message, count: Int
+    let list: [T]
+    let city: City
     
     enum CodingKeys: String, CodingKey {
         case code = "cod"

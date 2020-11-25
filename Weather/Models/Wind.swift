@@ -8,8 +8,8 @@
 import Foundation
 
 struct Wind: Codable {
-    let speed: Double?
-    let degree: Int?
+    let speed: Double
+    let degree: Int
     
     enum CodingKeys: String, CodingKey {
         case speed
