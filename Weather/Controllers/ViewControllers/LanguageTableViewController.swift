@@ -9,7 +9,7 @@ import UIKit
 
 final class LanguageTableViewController: UITableViewController {
     
-    public var userSettings: UserSettings!
+    public var userSettings: UserSettingsProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()

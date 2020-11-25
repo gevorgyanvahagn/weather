@@ -11,7 +11,7 @@ final class SettingsViewController: UITableViewController {
     
     @IBOutlet weak private var unitSegmentedController: UISegmentedControl!
     @IBOutlet weak private var selectedLanguageLabel: UILabel!
-    public var userSettins: UserSettings!
+    public var userSettins: UserSettingsProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()

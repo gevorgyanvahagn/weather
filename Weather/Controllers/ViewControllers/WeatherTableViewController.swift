@@ -12,7 +12,7 @@ final class WeatherTableViewController: UIViewController {
     @IBOutlet private weak var headerView: WeatherHeaderView!
     @IBOutlet private weak var tableView: UITableView!
     
-    public var userSettings: UserSettings!
+    public var userSettings: UserSettingsProtocol!
     private var dataSource: [Dictionary<Date, [Forecast]>.Element] = []
     
     override func viewDidLoad() {

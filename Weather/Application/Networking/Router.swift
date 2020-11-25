@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-enum Router: URLConvertible {
+enum Router: URLBuilder {
     
     case fiveDayWeatherForecast(longitude: Double, latitude: Double, language: Language, unit: Unit)
     case currentWeatherForecast(longitude: Double, latitude: Double, language: Language, unit: Unit)
@@ -47,26 +47,5 @@ enum Router: URLConvertible {
     
     func asURL() throws -> URL {
         return baseURL.appendingPathComponent(path)
-    }
-    
-    func request<T: Decodable>(completion: ((Result<T, Error>) -> Void)? = nil) {
-        
-        guard let url = try? self.asURL() else {
-            assertionFailure()
-            // TODO: - Add localisation to error message
-            completion?(.failure(NetworkError.invalidRequest(reason: "Data missing")))
-            return
-        }
-        
-        AF.request(url, method: method, parameters: parameters, encoding: URLEncoding.default, headers: HTTPHeaders(headers))
-            .validate()
-            .responseDecodable(of: T.self) { (response) in
-                switch response.result {
-                case .success(let data):
-                    completion?(.success(data))
-                case .failure(let error):
-                    completion?(.failure(error))
-                }
-            }
     }
 }

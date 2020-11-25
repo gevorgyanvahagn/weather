@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-protocol LocationServiceMock {
+protocol LocationServiceProtocol {
     var didUpdateLocationStatus: ((LocationService.LocationState) -> Void)? { get set }
     var userLocation: CLLocation? { get }
     func start()

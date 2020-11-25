@@ -15,8 +15,9 @@ final class WeatherViewController: UIViewController {
     private var weatherTableViewController: WeatherTableViewController?
     private var weatherLoadingViewController: WeatherLoadingViewController?
     
-    public var userSettings: UserSettings!
-    public var locationService: LocationServiceMock!
+    public var userSettings: UserSettingsProtocol!
+    public var locationService: LocationServiceProtocol!
+    public var networkClient: NetworkClientProtocol!
     private var state: State = .loading
     
     private enum State {
@@ -100,7 +101,8 @@ final class WeatherViewController: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
-        Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: userSettings.language, unit: userSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
+        
+        networkClient.request(Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: userSettings.language, unit: userSettings.unit)) { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
                 self.weatherTableViewController?.updateDatasource(container.list)
@@ -112,7 +114,7 @@ final class WeatherViewController: UIViewController {
         }
         
         group.enter()
-        Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: userSettings.language, unit: userSettings.unit).request { (result: Result<Forecast, Error>) in
+        networkClient.request(Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: userSettings.language, unit: userSettings.unit)) { (result: Result<Forecast, Error>) in
             switch result {
             case .success(let forecast):
                 self.weatherTableViewController?.updateHeaderView(forecast)
@@ -121,7 +123,7 @@ final class WeatherViewController: UIViewController {
             }
             group.leave()
         }
-        
+    
         group.notify(queue: .main) { [weak self] in
             self?.set(.loaded)
         }

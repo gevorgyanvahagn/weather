@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = navigationController?.topViewController as? WeatherViewController
         controller?.locationService = LocationService()
         controller?.userSettings = UserSettings()
+        controller?.networkClient = NetworkClient()
         
         return true
     }
