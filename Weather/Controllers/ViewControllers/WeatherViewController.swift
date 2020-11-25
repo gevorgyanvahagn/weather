@@ -15,7 +15,7 @@ final class WeatherViewController: UIViewController {
     private var weatherTableViewController: WeatherTableViewController?
     private var weatherLoadingViewController: WeatherLoadingViewController?
     
-    private var locationService = LocationService()
+    public var locationService: LocationServiceMock!
     private var state: State = .loading
     
     private enum State {

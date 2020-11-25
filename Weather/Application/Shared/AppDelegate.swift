@@ -13,7 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window:UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let navigationController = self.window?.rootViewController as? UINavigationController
+        let controller = navigationController?.topViewController as? WeatherViewController
+        let locationService = LocationService()
+        controller?.locationService = locationService
+        
         return true
     }
 }

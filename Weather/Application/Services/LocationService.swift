@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-final class LocationService: NSObject {
+final class LocationService: NSObject, LocationServiceMock {
     
     public var didUpdateLocationStatus: ((LocationState) -> Void)?
     private var locationManager: CLLocationManager
