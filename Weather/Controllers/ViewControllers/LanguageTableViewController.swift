@@ -9,13 +9,15 @@ import UIKit
 
 final class LanguageTableViewController: UITableViewController {
     
+    public var userSettings: UserSettings!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         selectCurrentLanguage()
     }
     
     private func selectCurrentLanguage() {
-        guard let selectedLanguageIndex = Language.allCases.firstIndex(of: UserSettings.language) else {
+        guard let selectedLanguageIndex = Language.allCases.firstIndex(of: userSettings.language) else {
             return
         }
         
@@ -47,7 +49,7 @@ extension LanguageTableViewController {
             cell.accessoryType = .checkmark
         }
         if Language.allCases.indices.contains(indexPath.row) {
-            UserSettings.language = Language.allCases[indexPath.row]
+            userSettings.language = Language.allCases[indexPath.row]
         } else {
             assertionFailure()
         }

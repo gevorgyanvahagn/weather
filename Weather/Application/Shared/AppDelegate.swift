@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = self.window?.rootViewController as? UINavigationController
         let controller = navigationController?.topViewController as? WeatherViewController
-        let locationService = LocationService()
-        controller?.locationService = locationService
+        controller?.locationService = LocationService()
+        controller?.userSettings = UserSettings()
         
         return true
     }

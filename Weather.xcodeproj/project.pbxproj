@@ -37,6 +37,7 @@
 		83B2399525663851002E204B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2399425663851002E204B /* City.swift */; };
 		83B2399825663922002E204B /* GenericContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2399725663922002E204B /* GenericContainer.swift */; };
 		83D91992256EE41600AC3C1F /* LocationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D91991256EE41600AC3C1F /* LocationServiceMock.swift */; };
+		83D91996256EE99700AC3C1F /* UserSettingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D91995256EE99700AC3C1F /* UserSettingsProtocol.swift */; };
 		83FC400D2565C4F200CBBF14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FC400C2565C4F200CBBF14 /* AppDelegate.swift */; };
 		83FC40112565C4F200CBBF14 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FC40102565C4F200CBBF14 /* WeatherViewController.swift */; };
 		83FC40142565C4F200CBBF14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83FC40122565C4F200CBBF14 /* Main.storyboard */; };
@@ -77,6 +78,7 @@
 		83B2399425663851002E204B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		83B2399725663922002E204B /* GenericContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericContainer.swift; sourceTree = "<group>"; };
 		83D91991256EE41600AC3C1F /* LocationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceMock.swift; sourceTree = "<group>"; };
+		83D91995256EE99700AC3C1F /* UserSettingsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsProtocol.swift; sourceTree = "<group>"; };
 		83FC40092565C4F200CBBF14 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83FC400C2565C4F200CBBF14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83FC40102565C4F200CBBF14 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				83D91991256EE41600AC3C1F /* LocationServiceMock.swift */,
+				83D91995256EE99700AC3C1F /* UserSettingsProtocol.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				837E84E62566CDA0006143E5 /* Router.swift in Sources */,
 				83889EE72568671400AD3D97 /* SettingsViewController.swift in Sources */,
 				837E84EC25671BC4006143E5 /* LocationService.swift in Sources */,
+				83D91996256EE99700AC3C1F /* UserSettingsProtocol.swift in Sources */,
 				837E84E22566BE15006143E5 /* NetworkError.swift in Sources */,
 				83889EF62568818200AD3D97 /* LanguageTableViewController.swift in Sources */,
 				83889EE02568560E00AD3D97 /* WeatherHeaderView.swift in Sources */,

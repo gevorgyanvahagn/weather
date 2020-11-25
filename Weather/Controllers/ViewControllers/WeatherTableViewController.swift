@@ -11,6 +11,8 @@ final class WeatherTableViewController: UIViewController {
     
     @IBOutlet private weak var headerView: WeatherHeaderView!
     @IBOutlet private weak var tableView: UITableView!
+    
+    public var userSettings: UserSettings!
     private var dataSource: [Dictionary<Date, [Forecast]>.Element] = []
     
     override func viewDidLoad() {
@@ -44,7 +46,7 @@ final class WeatherTableViewController: UIViewController {
             headerView.sunsetLabel.text = "Sunset \(DateFormatter.globalHourFormatter.string(from: sunset))"
         }
         
-            let temperatureText = MeasurementFormatter.temperatureFormatter(forecast.main.temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
+            let temperatureText = MeasurementFormatter.temperatureFormatter(forecast.main.temperature, with: userSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
             headerView.temperatureLabel.text = temperatureText
         
         if let description = forecast.weather.first?.weatherDescription {
@@ -66,7 +68,7 @@ final class WeatherTableViewController: UIViewController {
 
         
         if let description = forecast.weather.first?.weatherDescription {
-            let temperatureText = MeasurementFormatter.temperatureFormatter(forecast.main.temperature, with: UserSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
+            let temperatureText = MeasurementFormatter.temperatureFormatter(forecast.main.temperature, with: userSettings.unit.unitTemperature).replacingOccurrences(of: "°", with: " °")
             cell.temperatureLabel.text = "\(description.capitalized), \(temperatureText)"
         } else {
             cell.temperatureLabel.text = ""

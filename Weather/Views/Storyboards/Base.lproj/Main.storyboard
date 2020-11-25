@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" id="ZR4-n4-au7">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="4PD-5x-UiN">
                             <connections>
-                                <segue destination="J7d-Bs-smg" kind="show" id="TQJ-gM-dLR"/>
+                                <segue destination="J7d-Bs-smg" kind="show" identifier="showSettingsViewController" id="TQJ-gM-dLR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -135,7 +135,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="IVe-P0-nNz" kind="show" id="ho1-bt-l7e"/>
+                                            <segue destination="IVe-P0-nNz" kind="show" identifier="showLanguageTableViewController" id="ho1-bt-l7e"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

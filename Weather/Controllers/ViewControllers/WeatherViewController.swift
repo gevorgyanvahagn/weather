@@ -15,6 +15,7 @@ final class WeatherViewController: UIViewController {
     private var weatherTableViewController: WeatherTableViewController?
     private var weatherLoadingViewController: WeatherLoadingViewController?
     
+    public var userSettings: UserSettings!
     public var locationService: LocationServiceMock!
     private var state: State = .loading
     
@@ -76,14 +77,21 @@ final class WeatherViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWeatherTableViewController" {
-            if let weatherTableViewController = segue.destination as? WeatherTableViewController {
-                self.weatherTableViewController = weatherTableViewController
+            if let viewController = segue.destination as? WeatherTableViewController {
+                viewController.userSettings = UserSettings()
+                self.weatherTableViewController = viewController
             }
         }
         
         if segue.identifier == "showWeatherLoadingController" {
-            if let weatherLoadingViewController = segue.destination as? WeatherLoadingViewController {
-                self.weatherLoadingViewController = weatherLoadingViewController
+            if let viewController = segue.destination as? WeatherLoadingViewController {
+                self.weatherLoadingViewController = viewController
+            }
+        }
+        
+        if segue.identifier == "showSettingsViewController" {
+            if let viewController = segue.destination as? SettingsViewController {
+                viewController.userSettins = UserSettings()
             }
         }
     }
@@ -92,7 +100,7 @@ final class WeatherViewController: UIViewController {
         let group = DispatchGroup()
         
         group.enter()
-        Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
+        Router.fiveDayWeatherForecast(longitude: longitude, latitude: latitude, language: userSettings.language, unit: userSettings.unit).request { (result: Result<GenericContainer<Forecast>, Error>) in
             switch result {
             case .success(let container):
                 self.weatherTableViewController?.updateDatasource(container.list)
@@ -104,7 +112,7 @@ final class WeatherViewController: UIViewController {
         }
         
         group.enter()
-        Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: UserSettings.language, unit: UserSettings.unit).request { (result: Result<Forecast, Error>) in
+        Router.currentWeatherForecast(longitude: longitude, latitude: latitude, language: userSettings.language, unit: userSettings.unit).request { (result: Result<Forecast, Error>) in
             switch result {
             case .success(let forecast):
                 self.weatherTableViewController?.updateHeaderView(forecast)

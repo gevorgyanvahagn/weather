@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct UserSettings {
+struct UserSettings: UserSettingsProtocol {
     
-    private static let unitKey = "userSettingsUnitKey"
-    private static let languageKey = "userSettingsLanguageKey"
+    private let unitKey = "userSettingsUnitKey"
+    private let languageKey = "userSettingsLanguageKey"
     
-    static var unit: Unit {
+    var unit: Unit {
         get {
             if let unit = UserDefaults.standard.string(forKey: unitKey) {
                 return Unit(rawValue: unit) ?? .metric
@@ -25,7 +25,7 @@ struct UserSettings {
         }
     }
     
-    static var language: Language {
+    var language: Language {
         get {
             if let language = UserDefaults.standard.string(forKey: languageKey) {
                 return Language(rawValue: language) ?? .english
